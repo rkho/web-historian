@@ -21,9 +21,12 @@ var actions = {
   },
   'POST' : function(req, res){
     var link;
+    var encoding = {encoding: 'utf-8'};
     req.on('data', function(data){
-      link = data.split('=')[1]
+     link = data.toString().split('=')[1];
     });
+
+    console.log(req.__p);
     archive.isUrlInList(link, function(bool){
       if (bool){
         archive.isURLArchived(link, function(bool){
